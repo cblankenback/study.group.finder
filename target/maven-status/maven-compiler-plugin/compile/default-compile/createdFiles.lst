@@ -4,4 +4,5 @@ com/project/studygroupfinder/data/repository/StudentRepository.class
 com/project/studygroupfinder/data/repository/StudyGroupRepository.class
 com/project/studygroupfinder/data/entity/StudyGroup.class
 com/project/studygroupfinder/Application.class
+com/project/studygroupfinder/config/SecurityConfig.class
 com/project/studygroupfinder/data/entity/Course.class

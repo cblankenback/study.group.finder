@@ -4,4 +4,5 @@
 /Users/christianblankenback/Developer/eclipse-workspace-2024/study.group.finder/src/main/java/com/project/studygroupfinder/data/repository/CourseRepository.java
 /Users/christianblankenback/Developer/eclipse-workspace-2024/study.group.finder/src/main/java/com/project/studygroupfinder/data/entity/Student.java
 /Users/christianblankenback/Developer/eclipse-workspace-2024/study.group.finder/src/main/java/com/project/studygroupfinder/data/repository/StudyGroupRepository.java
+/Users/christianblankenback/Developer/eclipse-workspace-2024/study.group.finder/src/main/java/com/project/studygroupfinder/config/SecurityConfig.java
 /Users/christianblankenback/Developer/eclipse-workspace-2024/study.group.finder/src/main/java/com/project/studygroupfinder/data/repository/StudentRepository.java

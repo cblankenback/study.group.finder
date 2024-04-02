@@ -26,7 +26,7 @@ public class Student {
     @Column(name = "STUDENT_EMAIL", length = 50, nullable = false)
     private String studentEmail;
     @Setter
-    @Column(name = "STUDENT_PASSWORD", length = 50, nullable = false)
+    @Column(name = "STUDENT_PASSWORD", length = 1000, nullable = false)
     private String studentPassword;
     @Setter
     @Column(name = "STUDENT_FIRST_NAME", length = 50, nullable = false)
