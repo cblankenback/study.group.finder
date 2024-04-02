@@ -35,7 +35,7 @@ public class StudyGroup {
     private String sgLocation;
 
     @Setter
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "OWNER_ID", referencedColumnName = "STUDENT_ID")
     private Student owner;
 

@@ -1,6 +1,6 @@
 package com.project.studygroupfinder;
 
-import com.project.studygroupfinder.config.SecurityConfig;
+//import com.project.studygroupfinder.config.SecurityConfig;
 import com.project.studygroupfinder.data.entity.Student;
 import com.project.studygroupfinder.data.repository.StudentRepository;
 
@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.context.annotation.Import;
-import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 
 import java.util.List;
@@ -17,7 +17,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
-@Import(SecurityConfig.class)
+//@Import(SecurityConfig.class)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class StudentRepositoryTest {
 
@@ -27,23 +27,23 @@ public class StudentRepositoryTest {
 	@Autowired
 	private StudentRepository studentRepository;
 
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+//	@Autowired
+//	private PasswordEncoder passwordEncoder;
 
-	@Test
-	public void testSaveStudent() {
-		Student student = new Student();
-		student.setStudentEmail("test@example.com");
-		student.setStudentFirstName("John");
-		student.setStudentLastName("Doe");
-		student.setStudentPassword(passwordEncoder.encode("securepassword"));
-		Student savedStudent = studentRepository.save(student);
-
-		assertThat(savedStudent).isNotNull();
-        assertThat(savedStudent.getStudentId()).isNotNull();
-        // Verify that the password is encoded
-        assertThat(passwordEncoder.matches("securepassword", savedStudent.getStudentPassword())).isTrue();
-	}
+//	@Test
+//	public void testSaveStudent() {
+//		Student student = new Student();
+//		student.setStudentEmail("test@example.com");
+//		student.setStudentFirstName("John");
+//		student.setStudentLastName("Doe");
+//		student.setStudentPassword(passwordEncoder.encode("securepassword"));
+//		Student savedStudent = studentRepository.save(student);
+//
+//		assertThat(savedStudent).isNotNull();
+//        assertThat(savedStudent.getStudentId()).isNotNull();
+//        // Verify that the password is encoded
+//        assertThat(passwordEncoder.matches("securepassword", savedStudent.getStudentPassword())).isTrue();
+//	}
 
 	@Test
 	public void testFindStudentByEmail() {

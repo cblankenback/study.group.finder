@@ -36,7 +36,7 @@ public class Student {
     @Column(name = "STUDENT_LAST_NAME", length = 45, nullable = false)
     private String studentLastName;
     
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "STUDENTCOURSES",
         joinColumns = @JoinColumn(name = "STUDENT_ID"),
@@ -44,9 +44,10 @@ public class Student {
     )
     private Set<Course> courses;
     
-    @ManyToMany(mappedBy = "participants")
+    @ManyToMany(mappedBy = "participants",fetch = FetchType.EAGER)
     private Set<StudyGroup> studyGroups;
-    
+
+	
 
 
     
