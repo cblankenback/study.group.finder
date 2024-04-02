@@ -40,7 +40,7 @@ public class StudyGroup {
     private Student owner;
 
     @Setter
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
       name = "STUDENTSTUDYGROUP",
       joinColumns = @JoinColumn(name = "SG_ID"),
@@ -50,7 +50,7 @@ public class StudyGroup {
     
     
     @Setter
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "COURSE_ID")
     private Course course;
     

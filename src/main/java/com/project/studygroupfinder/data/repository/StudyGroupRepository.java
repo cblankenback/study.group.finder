@@ -11,5 +11,8 @@ import org.springframework.stereotype.Repository;
 public interface StudyGroupRepository extends JpaRepository<StudyGroup, Integer> {
 
 	List<StudyGroup> findBySgName(String string);
+	
+	List<StudyGroup> findAll();
+	StudyGroup findBySgId(Integer id);
 
 }
