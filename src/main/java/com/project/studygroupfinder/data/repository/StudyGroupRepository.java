@@ -14,5 +14,9 @@ public interface StudyGroupRepository extends JpaRepository<StudyGroup, Integer>
 	
 	List<StudyGroup> findAll();
 	StudyGroup findBySgId(Integer id);
+	
+	List<StudyGroup> findByParticipants_StudentId(Integer integer);
+	
+	List<StudyGroup> findByOwner_StudentId(Integer integer);
 
 }

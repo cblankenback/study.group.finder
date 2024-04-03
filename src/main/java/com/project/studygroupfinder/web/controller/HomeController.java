@@ -29,12 +29,6 @@ public class HomeController {
 		return "home";
 	}
 	
-//	@GetMapping("/studygroup/{sgId}")
-//	public String viewStudyGroup(@PathVariable Integer sgId, Model model) {
-//	    StudyGroup studyGroup = studyGroupRepository.findById(sgId)
-//	                              .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Study Group not found"));
-//	    model.addAttribute("studyGroup", studyGroup);
-//	    return "studygroup-detail"; // This is the name of the Thymeleaf template for the study group details page
-//	}
+
 
 }

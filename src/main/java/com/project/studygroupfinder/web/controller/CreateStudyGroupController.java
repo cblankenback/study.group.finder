@@ -26,7 +26,7 @@ public class CreateStudyGroupController {
 	
 	private final StudyGroupRepository studyGroupRepository;
     private final StudentService studentService;
-    private final CourseService courseService; // Add this
+    private final CourseService courseService; 
     @Autowired
     private StudyGroupService studyGroupService;
 
@@ -34,26 +34,26 @@ public class CreateStudyGroupController {
     public CreateStudyGroupController(StudyGroupRepository studyGroupRepository, StudentService studentService, CourseService courseService) { // Modify constructor
         this.studyGroupRepository = studyGroupRepository;
         this.studentService = studentService;
-        this.courseService = courseService; // Initialize courseService
+        this.courseService = courseService; 
     }
     
     
     @GetMapping("/creategroup")
     public String showCreateStudyGroupForm(Model model) {
-        model.addAttribute("studyGroup", new StudyGroup()); // If you're using a form-backing object
-        model.addAttribute("allCourses", courseService.findAllCourses()); // Make sure courseService.findAllCourses() correctly fetches all courses
-        return "createstudygroup";
+        model.addAttribute("studyGroup", new StudyGroup()); 
+        model.addAttribute("allCourses", courseService.findAllCourses());
+        return("createstudygroup");
     }
 
     @PostMapping("/createStudyGroup")
     public String createStudyGroup(@ModelAttribute StudyGroup studyGroup, @RequestParam("courseId") Integer courseId, Authentication authentication, RedirectAttributes redirectAttributes) {
         // Find the course by ID and set it to the studyGroup
-        Course course = courseService.findCourseById(courseId); // Ensure you have this method in your service
+        Course course = courseService.findCourseById(courseId); 
         studyGroup.setCourse(course);
 
         // Find the current user and set as the owner of the studyGroup
         String username = authentication.getName();
-        Student currentUser = studentService.findByStudentEmail(username); // Assuming findByStudentEmail returns a Student entity
+        Student currentUser = studentService.findByStudentEmail(username); 
         if (currentUser != null) {
             studyGroup.setOwner(currentUser);
         } else {
@@ -63,8 +63,8 @@ public class CreateStudyGroupController {
         }
 
         // Save the studyGroup using your service or repository
-        studyGroupService.save(studyGroup); // Make sure you have a save method in your service that persists the studyGroup to the database
+        studyGroupService.save(studyGroup);
         redirectAttributes.addFlashAttribute("successMessage", "Study group created successfully!");
-        return "redirect:/home"; // or wherever you want to redirect after creation
+        return "redirect:/home"; 
     }
 }
