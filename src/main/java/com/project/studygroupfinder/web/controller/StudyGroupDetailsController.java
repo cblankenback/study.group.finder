@@ -27,7 +27,7 @@ public class StudyGroupDetailsController {
     
 	private final StudyGroupRepository studyGroupRepository;
     private final StudentService studentService;
-    private final CourseService courseService; // Add this
+    private final CourseService courseService; 
     @Autowired
     private StudyGroupService studyGroupService;
 
@@ -35,7 +35,7 @@ public class StudyGroupDetailsController {
     public StudyGroupDetailsController(StudyGroupRepository studyGroupRepository, StudentService studentService, CourseService courseService) { // Modify constructor
         this.studyGroupRepository = studyGroupRepository;
         this.studentService = studentService;
-        this.courseService = courseService; // Initialize courseService
+        this.courseService = courseService; 
     }
     
     @GetMapping("/studygroup/{sgId}")
@@ -70,9 +70,9 @@ public class StudyGroupDetailsController {
     @PostMapping("/joinGroup")
     public String joinGroup(@RequestParam("sgId") Integer sgId, Authentication authentication, RedirectAttributes redirectAttributes) {
         String username = authentication.getName(); // Get the current user's username
-        // Assuming you have methods in your service to add a participant
+       
         try {
-            studyGroupService.addParticipant(sgId, username); // Implement this method in your service
+            studyGroupService.addParticipant(sgId, username); 
             redirectAttributes.addFlashAttribute("successMessage", "Successfully joined the study group!");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "Could not join the study group.");
@@ -83,9 +83,9 @@ public class StudyGroupDetailsController {
     @PostMapping("/leaveGroup")
     public String leaveGroup(@RequestParam("sgId") Integer sgId, Authentication authentication, RedirectAttributes redirectAttributes) {
         String username = authentication.getName(); // Get the current user's username
-        // Assuming you have methods in your service to add a participant
+       
         try {
-            studyGroupService.removeParticipant(sgId, username); // Implement this method in your service
+            studyGroupService.removeParticipant(sgId, username); 
             redirectAttributes.addFlashAttribute("successMessage", "Successfully remove from the study group!");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "Could not leave the study group.");

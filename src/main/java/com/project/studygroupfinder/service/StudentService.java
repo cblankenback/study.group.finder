@@ -36,7 +36,7 @@ public class StudentService  implements UserDetailsService {
     public Integer findStudentIdByEmail(String email) {
         Student student = studentRepository.findByStudentEmail(email);
         if (student != null) {
-            return student.getStudentId(); // Assuming getId() returns Long.
+            return student.getStudentId(); 
         } else {
             throw new UsernameNotFoundException("User not found with email: " + email);
         }

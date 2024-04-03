@@ -23,12 +23,12 @@ public class StudentController {
     }
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
-        // Assuming 'Student' is the name of your model attribute for the form
+       
         model.addAttribute("student", new Student());
-        return "register"; // name of your registration Thymeleaf template
+        return "register"; 
     }
     @GetMapping("/login")
     public String login() {
-        return "login"; // refers to 'login.html' in 'src/main/resources/templates'
+        return "login"; 
     }
 }
