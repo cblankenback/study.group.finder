@@ -21,6 +21,7 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "STUDENT_ID", nullable = false)
+    @Getter
     private Integer studentId;
     @Setter
     @Column(name = "STUDENT_EMAIL", length = 50, nullable = false)

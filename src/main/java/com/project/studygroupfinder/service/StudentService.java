@@ -33,5 +33,20 @@ public class StudentService  implements UserDetailsService {
         return studentRepository.save(student);
     }
 
+    public Integer findStudentIdByEmail(String email) {
+        Student student = studentRepository.findByStudentEmail(email);
+        if (student != null) {
+            return student.getStudentId(); // Assuming getId() returns Long.
+        } else {
+            throw new UsernameNotFoundException("User not found with email: " + email);
+        }
+    }
+
+	public Student findByStudentEmail(String currentUsername) {
+		 Student student = studentRepository.findByStudentEmail(currentUsername);
+		return student;
+	}
+    
+
    
 }
