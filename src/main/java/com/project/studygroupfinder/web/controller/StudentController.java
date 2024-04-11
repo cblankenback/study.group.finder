@@ -17,7 +17,7 @@ public class StudentController {
     
     @PostMapping("/register")
     public String registerStudentAccount(@ModelAttribute("student") Student student) {
-        System.out.println("Registering student with email: " + student.getStudentEmail() + " and password: " + student.getStudentPassword()); // Debugging log
+      //  System.out.println("Registering student with email: " + student.getStudentEmail() + " and password: " + student.getStudentPassword()); // Debugging log
         studentService.registerNewStudentAccount(student);
         return "redirect:/login";
     }

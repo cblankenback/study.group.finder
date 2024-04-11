@@ -1,15 +1,19 @@
-/Users/christianblankenback/Developer/eclipse-workspace-2024/study.group.finder/src/main/java/com/project/studygroupfinder/web/controller/StudyGroupDetailsController.java
-/Users/christianblankenback/Developer/eclipse-workspace-2024/study.group.finder/src/main/java/com/project/studygroupfinder/data/entity/StudyGroup.java
-/Users/christianblankenback/Developer/eclipse-workspace-2024/study.group.finder/src/main/java/com/project/studygroupfinder/web/controller/StudentController.java
-/Users/christianblankenback/Developer/eclipse-workspace-2024/study.group.finder/src/main/java/com/project/studygroupfinder/data/entity/Course.java
-/Users/christianblankenback/Developer/eclipse-workspace-2024/study.group.finder/src/main/java/com/project/studygroupfinder/Application.java
-/Users/christianblankenback/Developer/eclipse-workspace-2024/study.group.finder/src/main/java/com/project/studygroupfinder/service/StudyGroupService.java
-/Users/christianblankenback/Developer/eclipse-workspace-2024/study.group.finder/src/main/java/com/project/studygroupfinder/data/repository/CourseRepository.java
-/Users/christianblankenback/Developer/eclipse-workspace-2024/study.group.finder/src/main/java/com/project/studygroupfinder/data/entity/Student.java
-/Users/christianblankenback/Developer/eclipse-workspace-2024/study.group.finder/src/main/java/com/project/studygroupfinder/web/controller/IndexController.java
-/Users/christianblankenback/Developer/eclipse-workspace-2024/study.group.finder/src/main/java/com/project/studygroupfinder/config/WebSecurityConfig.java
-/Users/christianblankenback/Developer/eclipse-workspace-2024/study.group.finder/src/main/java/com/project/studygroupfinder/service/StudentService.java
-/Users/christianblankenback/Developer/eclipse-workspace-2024/study.group.finder/src/main/java/com/project/studygroupfinder/service/CourseService.java
-/Users/christianblankenback/Developer/eclipse-workspace-2024/study.group.finder/src/main/java/com/project/studygroupfinder/data/repository/StudyGroupRepository.java
-/Users/christianblankenback/Developer/eclipse-workspace-2024/study.group.finder/src/main/java/com/project/studygroupfinder/web/controller/HomeController.java
-/Users/christianblankenback/Developer/eclipse-workspace-2024/study.group.finder/src/main/java/com/project/studygroupfinder/data/repository/StudentRepository.java
+C:\Users\natha\3D Objects\Git\study.group.finder\src\main\java\com\project\studygroupfinder\web\controller\StudyGroupDetailsController.java
+C:\Users\natha\3D Objects\Git\study.group.finder\src\main\java\com\project\studygroupfinder\data\repository\StudyGroupRepository.java
+C:\Users\natha\3D Objects\Git\study.group.finder\src\main\java\com\project\studygroupfinder\data\repository\CourseRepository.java
+C:\Users\natha\3D Objects\Git\study.group.finder\src\main\java\com\project\studygroupfinder\data\entity\Student.java
+C:\Users\natha\3D Objects\Git\study.group.finder\src\main\java\com\project\studygroupfinder\web\controller\HomeController.java
+C:\Users\natha\3D Objects\Git\study.group.finder\src\main\java\com\project\studygroupfinder\data\repository\StudentRepository.java
+C:\Users\natha\3D Objects\Git\study.group.finder\src\main\java\com\project\studygroupfinder\web\controller\CreatedGroupsController.java
+C:\Users\natha\3D Objects\Git\study.group.finder\src\main\java\com\project\studygroupfinder\web\controller\IndexController.java
+C:\Users\natha\3D Objects\Git\study.group.finder\src\main\java\com\project\studygroupfinder\web\controller\StudentController.java
+C:\Users\natha\3D Objects\Git\study.group.finder\src\main\java\com\project\studygroupfinder\service\StudyGroupService.java
+C:\Users\natha\3D Objects\Git\study.group.finder\src\main\java\com\project\studygroupfinder\data\entity\Course.java
+C:\Users\natha\3D Objects\Git\study.group.finder\src\main\java\com\project\studygroupfinder\data\entity\StudyGroup.java
+C:\Users\natha\3D Objects\Git\study.group.finder\src\main\java\com\project\studygroupfinder\web\controller\StudentApiController.java
+C:\Users\natha\3D Objects\Git\study.group.finder\src\main\java\com\project\studygroupfinder\Application.java
+C:\Users\natha\3D Objects\Git\study.group.finder\src\main\java\com\project\studygroupfinder\config\WebSecurityConfig.java
+C:\Users\natha\3D Objects\Git\study.group.finder\src\main\java\com\project\studygroupfinder\service\CourseService.java
+C:\Users\natha\3D Objects\Git\study.group.finder\src\main\java\com\project\studygroupfinder\web\controller\JoinedGroupController.java
+C:\Users\natha\3D Objects\Git\study.group.finder\src\main\java\com\project\studygroupfinder\service\StudentService.java
+C:\Users\natha\3D Objects\Git\study.group.finder\src\main\java\com\project\studygroupfinder\web\controller\CreateStudyGroupController.java

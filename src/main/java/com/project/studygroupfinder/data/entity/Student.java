@@ -4,31 +4,29 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-
 import jakarta.persistence.*;
-
 import java.util.Set;
 
-
-
 @Entity
-@Table(name = "STUDENT")
 @Data
 @ToString
 @Getter
+@Table(name = "STUDENT")
 public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "STUDENT_ID", nullable = false)
-    @Getter
     private Integer studentId;
+
     @Setter
-    @Column(name = "STUDENT_EMAIL", length = 50, nullable = false)
+    @Column(name = "STUDENT_EMAIL", length = 50, nullable = false, unique = true)
     private String studentEmail;
+
     @Setter
     @Column(name = "STUDENT_PASSWORD", length = 1000, nullable = false)
     private String studentPassword;
+
     @Setter
     @Column(name = "STUDENT_FIRST_NAME", length = 50, nullable = false)
     private String studentFirstName;
@@ -45,11 +43,7 @@ public class Student {
     )
     private Set<Course> courses;
     
-    @ManyToMany(mappedBy = "participants",fetch = FetchType.EAGER)
-    private Set<StudyGroup> studyGroups;
-
-	
-
-
     
+    
+
 }
