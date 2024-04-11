@@ -1,6 +1,7 @@
 package com.project.studygroupfinder.data.entity;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import jakarta.persistence.*;
@@ -9,6 +10,7 @@ import java.util.Set;
 @Entity
 @Data
 @ToString
+@Getter
 @Table(name = "STUDENT")
 public class Student {
 
