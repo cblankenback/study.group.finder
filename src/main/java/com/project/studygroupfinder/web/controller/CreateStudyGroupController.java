@@ -1,5 +1,7 @@
 package com.project.studygroupfinder.web.controller;
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
@@ -39,11 +41,20 @@ public class CreateStudyGroupController {
     
     
     @GetMapping("/creategroup")
-    public String showCreateStudyGroupForm(Model model) {
-        model.addAttribute("studyGroup", new StudyGroup()); 
-        model.addAttribute("allCourses", courseService.findAllCourses());
-        return("createstudygroup");
+    public String showCreateStudyGroupForm(Model model, Authentication authentication) {
+        String email = authentication.getName(); // Assuming the student's email is the username in the authentication object
+        Student student = studentService.findByStudentEmail(email);
+        if (student == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Student not found");
+        }
+        
+        Set<Course> studentCourses = student.getCourses();
+        System.out.println(studentCourses);
+        model.addAttribute("studyGroup", new StudyGroup());
+        model.addAttribute("studentCourses", studentCourses); // Add student courses to the model
+        return "createstudygroup";
     }
+
 
     @PostMapping("/createStudyGroup")
     public String createStudyGroup(@ModelAttribute StudyGroup studyGroup, @RequestParam("courseId") Integer courseId, Authentication authentication, RedirectAttributes redirectAttributes) {

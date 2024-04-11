@@ -65,13 +65,12 @@
 			<label for="sgLocation">Location:</label> <input type="text"
 				id="sgLocation" name="sgLocation" th:value="*{sgLocation}" />
 			<p>
-				<label for="courseId">Course:</label> <select id="courseId"
-					name="courseId">
-					<option value="">Select a course</option>
-					<option th:each="course : ${allCourses}"
-						th:value="${course.courseId}" th:text="${course.courseName}">
-					</option>
-				</select>
+				<label for="courseId">Course:</label>
+					<select id="courseId" name="courseId">
+    					<option value="">Select a course</option>
+    					<option th:each="course : ${studentCourses}" th:value="${course.courseId}" th:text="${course.courseName}"></option>
+					</select>
+
 			</p>
 			<button type="submit" class="btn btn-primary">Create</button>
 		</form>

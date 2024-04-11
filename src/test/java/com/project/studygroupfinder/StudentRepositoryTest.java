@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -47,19 +48,24 @@ public class StudentRepositoryTest {
 
 	@Test
 	public void testFindStudentByEmail() {
-		Student student = new Student();
-		student.setStudentEmail("testfind@example.com");
-		student.setStudentFirstName("Jane");
-		student.setStudentLastName("Doe");
-		student.setStudentPassword("anothersecurepassword");
-		entityManager.persist(student);
-		entityManager.flush();
+	    Student student = new Student();
+	    student.setStudentEmail("testfind@example.com");
+	    student.setStudentFirstName("Jane");
+	    student.setStudentLastName("Doe");
+	    student.setStudentPassword("anothersecurepassword");
+	    entityManager.persist(student);
+	    entityManager.flush();
 
-		Student foundStudent = studentRepository.findByStudentEmail("testfind@example.com");
+	    // Use .findByStudentEmail() and handle the Optional result
+	    Optional<Student> foundStudentOpt = studentRepository.findByStudentEmail("testfind@example.com");
 
-		assertThat(foundStudent).isNotNull();
-		assertThat(foundStudent.getStudentEmail()).isEqualTo(student.getStudentEmail());
+	    assertThat(foundStudentOpt.isPresent()).isTrue(); // Verify that a result is present
+	    foundStudentOpt.ifPresent(foundStudent -> {
+	        // Perform assertions inside ifPresent to safely access the Student
+	        assertThat(foundStudent.getStudentEmail()).isEqualTo(student.getStudentEmail());
+	    });
 	}
+
 
 	@Test
 	public void testFindAllStudents() {
