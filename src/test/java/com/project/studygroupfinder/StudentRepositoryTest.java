@@ -9,10 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.context.annotation.Import;
+import org.springframework.transaction.annotation.Transactional;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -47,42 +49,48 @@ public class StudentRepositoryTest {
 
 	@Test
 	public void testFindStudentByEmail() {
-		Student student = new Student();
-		student.setStudentEmail("testfind@example.com");
-		student.setStudentFirstName("Jane");
-		student.setStudentLastName("Doe");
-		student.setStudentPassword("anothersecurepassword");
-		entityManager.persist(student);
-		entityManager.flush();
+	    Student student = new Student();
+	    student.setStudentEmail("testfind@example.com");
+	    student.setStudentFirstName("Jane");
+	    student.setStudentLastName("Doe");
+	    student.setStudentPassword("anothersecurepassword");
+	    entityManager.persist(student);
+	    entityManager.flush();
 
-		Student foundStudent = studentRepository.findByStudentEmail("testfind@example.com");
+	    // Use .findByStudentEmail() and handle the Optional result
+	    Optional<Student> foundStudentOpt = studentRepository.findByStudentEmail("testfind@example.com");
 
-		assertThat(foundStudent).isNotNull();
-		assertThat(foundStudent.getStudentEmail()).isEqualTo(student.getStudentEmail());
+	    assertThat(foundStudentOpt.isPresent()).isTrue(); // Verify that a result is present
+	    foundStudentOpt.ifPresent(foundStudent -> {
+	        // Perform assertions inside ifPresent to safely access the Student
+	        assertThat(foundStudent.getStudentEmail()).isEqualTo(student.getStudentEmail());
+	    });
 	}
 
 	@Test
-	public void testFindAllStudents() {
-		Student student1 = new Student();
-		student1.setStudentEmail("test1@example.com");
-		student1.setStudentFirstName("First");
-		student1.setStudentLastName("Student");
-		student1.setStudentPassword("password1");
+    @Transactional
+    public void testFindAllStudents() {
+        Student student1 = new Student();
+        student1.setStudentEmail("test1@example.com");
+        student1.setStudentFirstName("First");
+        student1.setStudentLastName("Student");
+        student1.setStudentPassword("password1");
 
-		Student student2 = new Student();
-		student2.setStudentEmail("test2@example.com");
-		student2.setStudentFirstName("Second");
-		student2.setStudentLastName("Student");
-		student2.setStudentPassword("password2");
+        Student student2 = new Student();
+        student2.setStudentEmail("test2@example.com");
+        student2.setStudentFirstName("Second");
+        student2.setStudentLastName("Student");
+        student2.setStudentPassword("password2");
 
-		entityManager.persist(student1);
-		entityManager.persist(student2);
-		entityManager.flush();
+        entityManager.persist(student1);
+        entityManager.persist(student2);
+        entityManager.flush();
 
-		List<Student> students = studentRepository.findAll();
+        List<Student> students = studentRepository.findAll();
 
-		assertThat(students).hasSizeGreaterThanOrEqualTo(2);
-		assertThat(students).contains(student1, student2);
-	}
+        System.out.println("Retrieved students: " + students); // Debugging output
+        assertThat(students).hasSizeGreaterThanOrEqualTo(2);
+        assertThat(students).contains(student1, student2);
+    }
 
 }

@@ -21,7 +21,7 @@ public class WebSecurityConfig {
         .authorizeHttpRequests((authz) -> authz
                     .requestMatchers("/register").permitAll()
                     .requestMatchers("/login").permitAll()
-                    .requestMatchers("/error","/").permitAll()
+                    .requestMatchers("/error","/","/api/**").permitAll()
                     .anyRequest().authenticated()
             )
         .formLogin(formLogin -> formLogin

@@ -1,16 +1,16 @@
 package com.project.studygroupfinder.data.entity;
 
-
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import jakarta.persistence.*;
 import java.util.Set;
-@Data
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+
 @Entity
 
-@ToString
 @Getter
 @Table(name = "COURSE")
 public class Course {
@@ -19,12 +19,24 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "COURSE_ID", nullable = false)
     private Integer courseId;
+
     @Setter
     @Column(name = "COURSE_NAME", length = 50, nullable = false)
     private String courseName;
+
     @Setter
-    @ManyToMany(mappedBy = "courses")
+    
+    @ManyToMany(mappedBy = "courses",fetch = FetchType.EAGER)
+    @JsonIgnore
     private Set<Student> students;
 
-   
+//    // Manually added constructor for courseName
+    public Course(String courseName) {
+        this.courseName = courseName;
+    }
+    public Course() {
+        
+    }
+
+    
 }

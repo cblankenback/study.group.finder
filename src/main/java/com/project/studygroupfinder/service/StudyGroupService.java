@@ -3,8 +3,14 @@ import com.project.studygroupfinder.data.entity.StudyGroup;
 import com.project.studygroupfinder.data.entity.Course;
 import com.project.studygroupfinder.data.entity.Student;
 import com.project.studygroupfinder.data.repository.StudyGroupRepository;
+
+import jakarta.persistence.EntityNotFoundException;
+
 import com.project.studygroupfinder.data.repository.CourseRepository;
 import com.project.studygroupfinder.data.repository.StudentRepository;
+
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,7 +33,8 @@ public class StudyGroupService {
     public void addParticipant(Integer sgId, String username) {
         StudyGroup studyGroup = studyGroupRepository.findById(sgId)
                 .orElseThrow(() -> new IllegalArgumentException("Study Group not found with ID: " + sgId));
-        Student student = studentRepository.findByStudentEmail(username);
+        Optional<Student> studentOptional = studentRepository.findByStudentEmail(username);
+        Student student = studentOptional.orElseThrow(() -> new EntityNotFoundException("Student not found with email: " + username));
 
         studyGroup.getParticipants().add(student);
         studyGroupRepository.save(studyGroup);
@@ -37,9 +44,9 @@ public class StudyGroupService {
     public void removeParticipant(Integer sgId, String username) {
         StudyGroup studyGroup = studyGroupRepository.findById(sgId)
                 .orElseThrow(() -> new IllegalArgumentException("Study Group not found with ID: " + sgId));
-        Student student = studentRepository.findByStudentEmail(username);
-              
-
+        Optional<Student> studentOptional = studentRepository.findByStudentEmail(username);
+        Student student = studentOptional.orElseThrow(() -> new EntityNotFoundException("Student not found with email: " + username));
+                  
         studyGroup.getParticipants().remove(student);
         studyGroupRepository.save(studyGroup);
     }

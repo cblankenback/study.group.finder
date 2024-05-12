@@ -1,9 +1,13 @@
 package com.project.studygroupfinder.web.controller;
 
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -12,9 +16,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.project.studygroupfinder.data.entity.Course;
 import com.project.studygroupfinder.data.entity.Student;
 import com.project.studygroupfinder.data.entity.StudyGroup;
 import com.project.studygroupfinder.data.repository.StudyGroupRepository;
@@ -39,7 +45,7 @@ public class StudyGroupDetailsController {
     }
     
     @GetMapping("/studygroup/{sgId}")
-    public String viewStudyGroup(@PathVariable Integer sgId, Model model, Authentication authentication) {
+    public String viewStudyGroup(@PathVariable Integer sgId, Model model, Authentication authentication, RestTemplate restTemplate) {
         StudyGroup studyGroup = studyGroupRepository.findById(sgId)
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Study Group not found"));
         String currentUsername = authentication.getName();
@@ -60,10 +66,21 @@ public class StudyGroupDetailsController {
         
         boolean showLeaveButton = !isOwner && isParticipant;
         
+    	String email = authentication.getName(); 
+        Student student = studentService.findByStudentEmail(email);
+		if (student == null) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Student not found");
+		}
+
+		String url = "http://localhost:8080/api/students/" + email + "/courses"; // Adjust the URL as necessary
+		ResponseEntity<Set<Course>> response = restTemplate.exchange(url, HttpMethod.GET, null,
+				new ParameterizedTypeReference<Set<Course>>() {
+				});
+		Set<Course> studentCourses = response.getBody();
         model.addAttribute("showJoinButton", showJoinButton);
         model.addAttribute("studyGroup", studyGroup);
         model.addAttribute("isOwner", isOwner);
-        model.addAttribute("allCourses", courseService.findAllCourses());
+        model.addAttribute("allCourses", studentCourses);
         model.addAttribute("showLeaveButton", showLeaveButton);
         return "studygroupdetails";
     }

@@ -22,6 +22,9 @@ public class CourseRepositoryTest {
 	public void testSaveAndFindCourse() {
 		// Create a new Course instance
 		Course course = new Course();
+		
+		
+		
 		course.setCourseName("Introduction to Spring Boot");
 		// courseRepository.flush(); d
 //        // Save the course to the database
