@@ -24,9 +24,10 @@ This Spring Boot project utilizes Maven for the build processes. It's designed t
 6. Right-click the project: `Maven` > `Update Project`.
 7. Run as `Maven clean`.
 8. Run as `Maven install`.
-9. Run as `Java Application` to start the project.
-10. Visit [http://localhost:8080/](http://localhost:8080/) in your web browser.
-
+9. Find and run the database script `studygroup.sql` in MySql
+10. Run as `Java Application` to start the project.
+11. Visit [http://localhost:8080/](http://localhost:8080/) in your web browser.
+Note: When creating a Study Group in the web app you need to go into MySql and add the courses the Student(you) are in or else the course field will be empty.
 ### Reference Documentation
 For further reference, please consider the following sections:
 
