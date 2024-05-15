@@ -4,10 +4,11 @@ This Spring Boot project utilizes Maven for the build processes. It's designed t
 
 ## Prerequisites
 
-- **Java JDK 21**: Ensure Java JDK 21 is installed on your machine.
-- **MySQL 8.3.0**: This project uses MySQL as the database. Make sure MySQL is installed and running 8.3.0 (If low verison update pom.xml).
+- **Java JDK 17**: Ensure Java JDK 17 is installed on your machine.
+- **MySQL 8.0.33**: This project uses MySQL as the database. Make sure MySQL is installed and running 8.0.33 (If low verison update pom.xml).
 - **Eclipse IDE**: For developing and running this project, Eclipse is recommended.
 - **Maven**: Maven is used for managing project dependencies and building the project.
+- **Lombok**: Lombok should be installed but if you are having errors in you code install it [here](https://projectlombok.org/download)
 
 ## Project Structure
 
@@ -16,18 +17,51 @@ This Spring Boot project utilizes Maven for the build processes. It's designed t
 
 ## Getting Started
 
+### MySQL Database
+1. Find the database script in the **db folder**.
+2. Run the sciprt in MySQL Workbench.
+
+### Eclipse
 1. Open Eclipse.
 2. Go to `File` > `Import`.
 3. Select `Maven` > `Existing Maven Projects`.
 4. Navigate to and select the project directory in your file system.
 5. Click `Finish` to import the project.
 6. Right-click the project: `Maven` > `Update Project`.
-7. Run as `Maven clean`.
-8. Run as `Maven install`.
-9. Find and run the database script `studygroup.sql` in MySql
-10. Run as `Java Application` to start the project.
-11. Visit [http://localhost:8080/](http://localhost:8080/) in your web browser.
-Note: When creating a Study Group in the web app you need to go into MySql and add the courses the Student(you) are in or else the course field will be empty.
+7. Find the **application.properties** file in the resource folder.
+8. Update the code so its able to connect to the database
+```
+#spring.datasource.url=jdbc:mysql://localhost:3306/<DATABASE NAME>?useSSL=false
+#spring.datasource.username=<USERNAME>
+#spring.datasource.password=<PASSWORD>
+```
+9. Run as `Maven clean`.
+10. Run as `Maven install`.
+11. Run as `Java Application` to start the project.
+12. Visit [http://localhost:8080/](http://localhost:8080/) in your web browser.
+
+### Docker (Optional)
+1. Update **application.properties**
+```
+spring.config.activate.on-profile=prod
+spring.datasource.url=${SPRING_DATASOURCE_URL}
+spring.datasource.username=${SPRING_DATASOURCE_USERNAME}
+spring.datasource.password=${SPRING_DATASOURCE_PASSWORD}
+```
+2. Run the file via termial 
+```
+docker build -t study-group-finder:latest . 
+
+docker run -p 8080:8080 \
+  -e SPRING_DATASOURCE_URL='jdbc:mysql://<Database URL>?useSSL=true&requireSSL=false' \
+  -e SPRING_DATASOURCE_USERNAME='<USERNAME>' \
+  -e SPRING_DATASOURCE_PASSWORD='<PASSWORD>' \
+  -e SPRING_DATASOURCE_DRIVER_CLASS_NAME='com.mysql.cj.jdbc.Driver' \
+  -e SPRING_JPA_HIBERNATE_DDL_AUTO='none' \
+  study-group-finder:latest
+```
+3. Visit [http://localhost:8080/](http://localhost:8080/) in your web browser.
+
 ### Reference Documentation
 For further reference, please consider the following sections:
 

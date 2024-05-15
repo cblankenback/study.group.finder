@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+	crossorigin="anonymous">
+<style>
+.login-container {
+	max-width: 400px;
+	margin: auto;
+	padding-top: 50px;
+}
+
+.login-form {
+	margin-top: 20px;
+}
+
+.login-form input[type="text"], .login-form input[type="password"] {
+	margin-bottom: 15px;
+}
+</style>
+</head>
+<body>
+
+	<div class="container mt-5">
+		<div class="alert alert-info" role="alert">
+			<h4 class="alert-heading">Important Information!</h4>
+			<p>Please use a fake email and fake password. (passwords are
+				encrypted in the database)</p>
+			<p>When you make an account, you will be added to a class. In the
+				future, it might pull classes from an API and add them to your
+				account. For now, you just get auto-added to one class.</p>
+			<p>
+				How to access the website's APIs: <a
+					href="http://cblankenback.tech/api/students">http://cblankenback.tech/api/students</a>
+				or <a href="http://cblankenback.tech/api/students/{email}/courses">http://cblankenback.tech/api/students/{email}/courses</a>
+			</p>
+		</div>
+	</div>
+	<div class="container login-container">
+		<h2 class="text-center">Login</h2>
+		<div th:if="${errorMessage}" class="alert alert-danger" role="alert">
+			<p th:text="${errorMessage}">Error message here</p>
+		</div>
+		<form class="login-form" name="login" th:action="@{/login}"
+			method="post">
+			<div class="mb-3">
+				<input type="text" class="form-control" name="username"
+					placeholder="Email" required>
+			</div>
+			<div class="mb-3">
+				<input type="password" class="form-control" name="password"
+					placeholder="Password" required>
+			</div>
+			<input type="hidden" th:name="${_csrf.parameterName}"
+				th:value="${_csrf.token}" />
+			<button type="submit" class="btn btn-primary w-100">Login</button>
+		</form>
+		<p class="text-center mt-3">
+			Don't have an account? <a th:href="@{/register}">Sign up here</a>
+		</p>
+		<p class="text-center">
+			<a th:href="@{/}">Home</a>
+		</p>
+	</div>
+</body>
+</html>

@@ -2,16 +2,20 @@ package com.project.studygroupfinder.service;
 
 import com.project.studygroupfinder.data.entity.Course;
 import com.project.studygroupfinder.data.entity.Student;
+import com.project.studygroupfinder.data.repository.CourseRepository;
 import com.project.studygroupfinder.data.repository.StudentRepository;
 import com.project.studygroupfinder.dto.CourseDTO;
 import com.project.studygroupfinder.dto.StudentDTO;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -28,6 +32,8 @@ import java.util.stream.Collectors;
 public class StudentService  implements UserDetailsService {
 	@Autowired
     private StudentRepository studentRepository;
+	@Autowired
+    private CourseRepository courseRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -42,9 +48,29 @@ public class StudentService  implements UserDetailsService {
     }
 
 
-    public Student registerNewStudentAccount(Student student) {
-        student.setStudentPassword(passwordEncoder.encode(student.getStudentPassword()));
-        return studentRepository.save(student);
+    public Student registerNewStudentAccount(Student student) throws Exception {
+    	
+    	 	Random rand = new Random();
+    	 	
+         try {
+        	 student.setStudentPassword(passwordEncoder.encode(student.getStudentPassword()));
+             Course course = new Course();
+             course.setCourseName("CST-"+ rand.nextInt(1001,10000));
+             Course course2 = new Course();
+             course2.setCourseName("CST-"+ rand.nextInt(1001,10000));
+             courseRepository.save(course);
+             courseRepository.save(course2);
+             student.getCourses().add(course);
+             student.getCourses().add(course2);
+             return studentRepository.save(student);
+         }catch (DataIntegrityViolationException e) {
+             if (e.getRootCause() instanceof SQLIntegrityConstraintViolationException) {
+                 throw new Exception("An account with the given email already exists.");
+             } else {
+                 throw new Exception("A database error occurred.");
+             }
+         }
+         
     }
 
     public Integer findStudentIdByEmail(String email) {

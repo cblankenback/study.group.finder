@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import jakarta.persistence.*;
+
+import java.util.HashSet;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -23,6 +25,7 @@ public class Student {
     private Integer studentId;
 
     @Setter
+    
     @Column(name = "STUDENT_EMAIL", length = 50, nullable = false, unique = true)
     private String studentEmail;
 
@@ -47,7 +50,7 @@ public class Student {
         inverseJoinColumns = @JoinColumn(name = "COURSE_ID")
     )
     @JsonManagedReference
-    private Set<Course> courses;
+    private Set<Course> courses = new HashSet<>();;
     
     
     
