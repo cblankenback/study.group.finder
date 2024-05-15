@@ -3,30 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <title>StudyGroupFinder</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
-      crossorigin="anonymous">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+	crossorigin="anonymous">
 </head>
 <body>
 	<div class="container mt-5">
 		<div class="alert alert-info" role="alert">
 			<h4 class="alert-heading">Important Information!</h4>
-			<p>Please use a fake email and fake password. (passwords are
-				encrypted in the database)</p>
+			<p>Please use a fake email and fake password.</p>
 			<p>When you make an account, you will be added to a class. In the
 				future, it might pull classes from an API and add them to your
-				account. For now, you just get auto-added to one class.</p>
+				account. For now, you just get auto-added to two class.</p>
 			<p>
-				How to access the website's APIs: <a
-					href="http://cblankenback.tech/api/students">http://cblankenback.tech/api/students</a>
-				or <a href="http://cblankenback.tech/api/students/{email}/courses">http://cblankenback.tech/api/students/{email}/courses</a>
+		</div>
+		<div class="alert alert-light" role="alert">
+			<p>
+				For detailed API documentation, please visit: <a
+					th:href="@{/api/docs}">API Documentation</a>
 			</p>
+
 		</div>
 		<p>
-			Already have an account? <a th:href="@{/login}">Login here</a>
+			Already have an account? <a th:href="@{/login}"
+				class="btn btn-primary">Login here</a>
 		</p>
 		<p>
-			Don't have an account? <a th:href="@{/register}">Sign up here</a>
+			Don't have an account? <a th:href="@{/register}"
+				class="btn btn-secondary">Sign up here</a>
 		</p>
 	</div>
 </body>

@@ -11,19 +11,16 @@
 </head>
 <body>
 	<div class="container mt-5">
+		
 		<div class="alert alert-info" role="alert">
 			<h4 class="alert-heading">Important Information!</h4>
-			<p>Please use a fake email and fake password. (passwords are
-				encrypted in the database)</p>
+			<p>Please use a fake email and fake password.</p>
 			<p>When you make an account, you will be added to a class. In the
 				future, it might pull classes from an API and add them to your
-				account. For now, you just get auto-added to one class.</p>
+				account. For now, you just get auto-added to two class.</p>
 			<p>
-				How to access the website's APIs: <a
-					href="http://cblankenback.tech/api/students">http://cblankenback.tech/api/students</a>
-				or <a href="http://cblankenback.tech/api/students/{email}/courses">http://cblankenback.tech/api/students/{email}/courses</a>
-			</p>
 		</div>
+
 		<h2>Register</h2>
 		<div th:if="${errorMessage}" class="alert alert-danger" role="alert">
 			<p th:text="${errorMessage}">Error message here</p>
@@ -49,14 +46,24 @@
 					id="studentLastName" name="studentLastName"
 					placeholder="Enter last name" required>
 			</div>
+			<p>
+			<h3> </h3>
 			<button type="submit" class="btn btn-primary">Register</button>
+			</p>
 		</form>
 		<p>
-			Already have an account? <a th:href="@{/login}">Login here</a>
+			Already have an account?<a th:href="@{/login}" class="btn btn-secondary">Login here</a> 
+		
+			<a th:href="@{/}"class="btn btn-secondary">Home</a>
 		</p>
-		<p>
-			<a th:href="@{/}">Home</a>
-		</p>
+
+		<div class="alert alert-light" role="alert">
+			<p>
+				For detailed API documentation, please visit: <a
+					th:href="@{/api/docs}">API Documentation</a>
+			</p>
+
+		</div>
 	</div>
 </body>
 </html>

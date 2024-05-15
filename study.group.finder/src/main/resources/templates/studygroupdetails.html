@@ -32,6 +32,8 @@
 							href="#" th:href="@{/joinedgroups}">Joined Group</a></li>
 						<li class="nav-item"><a class="nav-link" aria-current="page"
 							href="#" th:href="@{/createdgroups}">Created Group</a></li>
+							<li class="nav-item"><a class="nav-link"
+                        href="#" th:href="@{/createclass}">Create Course</a></li>
 						<li class="nav-item">
 							<form th:action="@{/logout}" method="post">
 								<input type="hidden" name="_csrf" th:value="${_csrf.token}" />

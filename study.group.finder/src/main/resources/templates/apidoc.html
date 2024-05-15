@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>API Documentation</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+	crossorigin="anonymous">
+</head>
+<body>
+	
+	<div class="container mt-5">
+		<h1>API Documentation</h1>
+		<p>
+		<a th:href="@{/login}" class="btn btn-primary">Login here</a> 
+		
+		<a th:href="@{/register}" class="btn btn-secondary">Sign up here </a>
+			<a th:href="@{/}"class="btn btn-secondary">Home</a>
+	</p>
+		<div class="alert alert-info" role="alert">
+			<h4 class="alert-heading">Student API</h4>
+			<p>
+				<strong>Endpoint:</strong>
+		
+				<a href="/api/students"><code>GET /api/students</code></a></p>
+			</p>
+			<p>Returns a list of all students with their details.</p>
+			<p>
+				<strong>Sample Response:</strong>
+			</p>
+			<pre>[
+    {"studentId":1,"studentEmail":"firstaccount@1.com","studentFirstName":"dave","studentLastName":"sal"},
+    {"studentId":2,"studentEmail":"secondaccount@2.com","studentFirstName":"Riley","studentLastName":"Andrade"},
+    {"studentId":3,"studentEmail":"1@1","studentFirstName":"1","studentLastName":"1"},
+    {"studentId":4,"studentEmail":"lois@vogue","studentFirstName":"Dec","studentLastName":"Dec"}
+]</pre>
+		</div>
+
+		<div class="alert alert-info" role="alert">
+			<h4 class="alert-heading">Courses for Student API</h4>
+			<p>
+				<strong>Endpoint:</strong>
+			
+				<a href="/api/students/firstaccount@1.com/courses"><code>GET /api/students/{email}/courses</code></a></p>
+			</p>
+			<p>Returns a list of courses for a given student by their email.</p>
+			<p>
+				<strong>Sample Response:</strong>
+			</p>
+			<pre>[
+     {"courseId":1,"courseName":"CST-1072","students":[{"studentId":1,"studentEmail":"firstaccount@1.com","studentFirstName":"dave","studentLastName":"sal"}]},
+	 {"courseId":2,"courseName":"CST-5571","students":[{"studentId":1,"studentEmail":"firstaccount@1.com","studentFirstName":"dave","studentLastName":"sal"}]}
+]</pre>
+		</div>
+	</div>
+</body>
+</html>

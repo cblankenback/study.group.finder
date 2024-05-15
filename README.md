@@ -3,8 +3,10 @@
 ## About The Project
 Study Group Finder is a web application designed to help students find and join study groups for their courses. This tool aims to facilitate collaborative learning and make it easier for students to connect with peers in their educational institutions.
 
+
+
 ## Install on own machine
-For detailed instructions on how to use the install and run application, please refer to our [help guide](study.group.finder/HELP.md).
+For detailed instructions on how to use and install and run application, please refer to the [help guide](study.group.finder/HELP.md).
 
 ## Website
 You can access the Study Group Finder at [cblankenback.tech](http://cblankenback.tech).
@@ -17,6 +19,7 @@ Welcome to the Study Group Finder! This guide will walk you through the steps to
 - Visit the main website.
 - Navigate to the signup page.
 - Fill in your details and submit the form to create an account.
+- Password do get encrypted and they are stored encrypted (althugh on the website I didnt buy end to end encrypted, meaning that from the website to the back-end it is not encrypted).
 - You will then be auto added to some courses
 
 ### Logging In
