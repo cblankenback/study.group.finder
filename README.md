@@ -8,8 +8,6 @@ Study Group Finder is a web application designed to help students find and join 
 ## Install on own machine
 For detailed instructions on how to use and install and run application, please refer to the [help guide](study.group.finder/HELP.md).
 
-## Website
-You can access the Study Group Finder at [cblankenback.tech](http://cblankenback.tech).
 
 
 ## Getting Started
